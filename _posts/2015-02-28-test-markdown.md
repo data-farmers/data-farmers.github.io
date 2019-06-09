@@ -2,8 +2,7 @@
 layout: post
 title: Come fare un nuovo post
 subtitle: Arthur è veramente Arthur?
-gh-repo: daattali/beautiful-jekyll
-gh-badge: [star, fork, follow]
+gh-repo: data-farmers/code/
 tags: [test]
 comments: true
 ---
