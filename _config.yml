@@ -23,7 +23,7 @@ title: Data Farmers
 
 # List of links in the navigation bar
 navbar-links:
-  Paople: "aboutme"
+  People: "aboutme"
   ARC2S Group: "http://arcs.di.unito.it"
 
 # Image to show in the navigation bar - image must be a square (width = height)
