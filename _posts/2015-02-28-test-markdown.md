@@ -7,9 +7,7 @@ tags: [test]
 comments: true
 ---
 
-Qui sotto una guida di come scrivere un post SENZA HTML, ma con un linguaggio markup che assomiglia a quello di Jupyter Notebook. Si può mettere anche html? 
-
-    <h3> sa </h3>
+Qui sotto una guida di come scrivere un post SENZA HTML, ma con un linguaggio markup che assomiglia a quello di Jupyter Notebook. Si può mettere anche html?
 
 
 
