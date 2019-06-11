@@ -35,7 +35,7 @@ in order to evaluate how good a given projection is in preserving the original s
 _i_ and _j_ in the higher and in the lower dimensionality space. Following his original proposal, the function error E is a function of the
 Euclidean distance, as follows:
 
-$$ \frac{1}{\sum{i<j} d_{ij}^{\*}} \sum{i<j} * \frac{(d_{ij}^{*} - d_{ij})^2}{d_{ij}^{\*}} $$
+$$ \frac{1}{\sum_{i<j} d_{ij}^{\*}} \sum_{i<j} * \frac{(d_{ij}^{*} - d_{ij})^2}{d_{ij}^{\*}} $$
 
 where _variables_ means _whatever_.
 
