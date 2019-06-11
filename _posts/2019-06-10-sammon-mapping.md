@@ -30,14 +30,14 @@ Sammon Mapping is then a perfect start for visualizing your high dimensionality 
 
 ## The algorithm
 
-As proposed by J. W. Sammon in 1969, Sammon Mapping is not actually an algorithm, strictly speaking. Sammon defined an error funcion,
+As proposed by J. W. Sammon in 1969 [[1]](https://dl.acm.org/citation.cfm?id=1310727), Sammon Mapping is not actually an algorithm, strictly speaking. Sammon defined an error funcion,
 in order to evaluate how good a given projection is in preserving the original structure, by assessing the difference in the distance between each pair of points
 _i_ and _j_ in the higher and in the lower dimensionality space. Following his original proposal, the function error E is a function of the
 Euclidean distance, as follows:
 
 **FORMULA**
 
-where _variables_ means _whatever.
+where _variables_ means _whatever_.
 
 Thus, the projection itself is a optimization problem: for each pair of points {_i_, _j_}, we only need to find a new distance which is as close as possible to the original one,
 where "as close as possible" means beneath a given threshold \begin{equation} \epsilon \end{equation}.
@@ -46,9 +46,9 @@ In the following years several other approaches have been used:
 
   - Genetic algorithms **SOURCE**
   - Simulated annealing **SOURCE**
-  - Neural networks **SOURCE**
+  - Neural networks [[4]](https://link.springer.com/chapter/10.1007/978-3-540-71629-7_21)
 
-Sun et al. **SOUCE** find out that the left/right Bregman divergence is a major improvement for the whole algorithm in terms of performance.
+Sun et al. [[5]](https://www.sciencedirect.com/science/article/pii/S0020025511005561?via%3Dihub) find out that the left/right Bregman divergence is a major improvement for the whole algorithm in terms of performance.
 
 
 ## The code
