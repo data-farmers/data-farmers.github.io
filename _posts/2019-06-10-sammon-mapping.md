@@ -23,8 +23,8 @@ This kind of projection usually distorts distances between points, mapping them 
 Sammon Mapping, instead, points to flatten a high dimensionality space preserving, when possible, the distance between any pair of points.
 Take a look at these pictures I took from [this amazing explanation](http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0910/henderson.pdf): 
 
-![Sammon1](img/sammon/sammon1.png)
-![Sammon2](img/sammon/sammon2.png)
+![Sammon1](/img/sammon/sammon1.png)
+![Sammon2](/img/sammon/sammon2.png)
 
 Sammon Mapping is then a perfect startpoint for visualizing a high dimensionality dataset, searching for recurrent structures and shapes.
 
