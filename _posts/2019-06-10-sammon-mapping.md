@@ -20,13 +20,15 @@ highlighting patterns and spatial relationships.
 Drawing points in the space is pretty easy if the space is 1, 2 or 3 dimensional. In order to represent higher dimensional spaces, 
 one could apply some dimensionality reduction algorithm, keeping the best 2 or 3 axes of the space, or some combination.
 This kind of projection usually distorts distances between points, mapping them in a space where they don't have the same shape.
-Sammon Mapping, instead, points to flatten a high dimensionality space preserving, when possible, the distance between any pair of points.
-Take a look at these pictures I took from [this amazing explanation](http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0910/henderson.pdf): 
 
 ![Sammon1](../img/sammon/sammon1.png)
+
+Sammon Mapping, instead, points to flatten a high dimensionality space preserving, when possible, the distance between any pair of points. It is a perfect startpoint for visualizing a high dimensionality dataset, searching for recurrent structures and shapes.
+
 ![Sammon2](../img/sammon/sammon2.png)
 
-Sammon Mapping is then a perfect startpoint for visualizing a high dimensionality dataset, searching for recurrent structures and shapes.
+
+Images taken from [here](http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0910/henderson.pdf).
 
 ## The algorithm
 
