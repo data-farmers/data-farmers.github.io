@@ -37,7 +37,7 @@ Euclidean distance, as follows:
 
 $$ \frac{1}{ \sum_{i<j} {d_{ij}^{\\*}}} * \sum_{i<j}{\frac{(d_{ij}^{\\*} - d_{ij})^2}{d_{ij}^{\\*}}} $$
 
-where $ d_{ij} $ is the distance between _i_ and _j_ in the original space, and $ d_{ij}^{\*} $ is the distance between _i_ and _j_ once mapped into the new, lower dimensionality space.
+where $ d_{ij}^{\*} $ is the distance between _i_ and _j_ in the original space, and $ d_{ij} $ is the distance between _i_ and _j_ once mapped into the new, lower dimensionality space.
 
 Thus, the projection itself is a optimization problem: for each pair of points {_i_, _j_}, we only need to find a new distance which is as close as possible to the original one,
 where "as close as possible" means beneath a given threshold $ \epsilon $.
