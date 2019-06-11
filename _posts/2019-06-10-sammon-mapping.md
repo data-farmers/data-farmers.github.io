@@ -26,7 +26,7 @@ Take a look at these pictures I took from [this amazing explanation](http://home
 ![Sammon1](img/sammon/sammon1.png)
 ![Sammon2](img/sammon/sammon2.png)
 
-Sammon Mapping is then a perfect start for visualizing your high dimensionality dataset, searching for recurrent structures and shapes.
+Sammon Mapping is then a perfect startpoint for visualizing a high dimensionality dataset, searching for recurrent structures and shapes.
 
 ## The algorithm
 
@@ -42,24 +42,17 @@ where _variables_ means _whatever_.
 Thus, the projection itself is a optimization problem: for each pair of points {_i_, _j_}, we only need to find a new distance which is as close as possible to the original one,
 where "as close as possible" means beneath a given threshold \begin{equation} \epsilon \end{equation}.
 Sammon proposed a steepest gradient descent algorithm to minimize the error, a method easy to apply but poor in performances.
-In the following years several other approaches have been used:
+In the following years several other approaches have been used, like simulated annealing [[2]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.48.5626&rep=rep1&type=pdf) and neural networks [[3]](https://link.springer.com/chapter/10.1007/978-3-540-71629-7_21). 
 
-  - Genetic algorithms **SOURCE**
-  - Simulated annealing **SOURCE**
-  - Neural networks [[4]](https://link.springer.com/chapter/10.1007/978-3-540-71629-7_21)
+Sun et al. [[4]](https://www.sciencedirect.com/science/article/pii/S0020025511005561?via%3Dihub) found out that using the left/right Bregman divergence as distance in the error function E is a major improvement for the whole algorithm in terms of performance.
 
-Sun et al. [[5]](https://www.sciencedirect.com/science/article/pii/S0020025511005561?via%3Dihub) find out that the left/right Bregman divergence is a major improvement for the whole algorithm in terms of performance.
+By default, iterative algorithms for the Sammon error minimization problem don't start from the original spatial configuration of datapoints, but from the Principal Component Analysis, as it has been shown to lead to a faster convergence.
 
 
 ## The code
 
 Unfortunately, it doesn't look Python has a good library that includes the Sammon Mapping among its functions.
 The following code is _stolen_ from [Tom Pollard's repository](https://github.com/tompollard/sammon). Thanks.
-
-
-{: .box-note}
-**Note:** Gradient descent is shown to converge faster if applied on the PCA of the original space. As a result, starting the iterative process
-from the PCA is a broadly accepted standard.
 
 
 
