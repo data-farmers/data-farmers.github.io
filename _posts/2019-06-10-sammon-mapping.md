@@ -35,12 +35,12 @@ in order to evaluate how good a given projection is in preserving the original s
 _i_ and _j_ in the higher and in the lower dimensionality space. Following his original proposal, the function error E is a function of the
 Euclidean distance, as follows:
 
-**FORMULA**
+\begin{equation} \frac{1}{\sum{i<j} d_{ij}^{*}} \sum{i<j}\frac{(d_{ij}^{*} - d_{ij})^2}{d_{ij}^{*}} \end{equation}
 
 where _variables_ means _whatever_.
 
 Thus, the projection itself is a optimization problem: for each pair of points {_i_, _j_}, we only need to find a new distance which is as close as possible to the original one,
-where "as close as possible" means beneath a given threshold \begin{equation} \epsilon \end{equation}.
+where "as close as possible" means beneath a given threshold \(\epsilon\).
 Sammon proposed a steepest gradient descent algorithm to minimize the error, a method easy to apply but poor in performances.
 In the following years several other approaches have been used, like simulated annealing [[2]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.48.5626&rep=rep1&type=pdf) and neural networks [[3]](https://link.springer.com/chapter/10.1007/978-3-540-71629-7_21). 
 
