@@ -4,10 +4,10 @@ title: Sammon mapping
 subtitle: A non-linear mapping for data visualization
 gh-repo: data-farmers/code
 tags: [multidimensional-scaling, non-linear]
+author: Alfonso
 comments: true
 ---
 
-# Sammon Mapping
 
 Sammon Mapping belongs to the multidimensional scaling algorithms family, as its main goal is to reduce a high dimensionality
 space to a lower dimensionality space, for visualization purposes. Unlike PCA and other dimensionality scaling algorithms, 
