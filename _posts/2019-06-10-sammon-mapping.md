@@ -2,8 +2,8 @@
 layout: post
 title: Sammon mapping
 subtitle: A non-linear mapping for data visualization
-gh-repo: data-farmers/code/sammon.py
-tags: [multidimensional-scaling][non-linear]
+gh-repo: data-farmers/code
+tags: [multidimensional-scaling, non-linear]
 comments: true
 ---
 
@@ -40,7 +40,7 @@ Euclidean distance, as follows:
 where _variables_ means _whatever.
 
 Thus, the projection itself is a optimization problem: for each pair of points {_i_, _j_}, we only need to find a new distance which is as close as possible to the original one,
-where "as close as possible" means beneath a given threshold \epsilon.
+where "as close as possible" means beneath a given threshold \begin{equation} \epsilon \end{equation}.
 Sammon proposed a steepest gradient descent algorithm to minimize the error, a method easy to apply but poor in performances.
 In the following years several other approaches have been used:
 
