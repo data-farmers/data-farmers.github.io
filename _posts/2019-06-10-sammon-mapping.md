@@ -53,7 +53,7 @@ Sun et al. **SOUCE** find out that the left/right Bregman divergence is a major 
 
 ## The code
 
-Unfortunately, it doesn't look Python has a good library that includes the Sammon Mapping among its functions. If you know any, please comment!
+Unfortunately, it doesn't look Python has a good library that includes the Sammon Mapping among its functions.
 The following code is _stolen_ from [Tom Pollard's repository](https://github.com/tompollard/sammon). Thanks.
 
 
