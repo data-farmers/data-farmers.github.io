@@ -54,7 +54,7 @@ By default, iterative algorithms for the Sammon error minimization problem don't
 ## The code
 
 Unfortunately, it doesn't look Python has a good library that includes the Sammon Mapping among its functions.
-The following code is taken from [Tom Pollard's repository](https://github.com/tompollard/sammon). Thanks.
+The following code leverages a function taken from Tom Pollard's [repository](https://github.com/tompollard/sammon). Thanks.
 
 
 
@@ -81,7 +81,7 @@ Why we can't use the more popular Principal Component Analysis? Apparently there
 
 ![sammonplot1](../img/sammon/sammonplot1.png){:height="150%" width="150%"}
 
-This time Sammon Mapping has found a projection very similar to the one PCA found. Maybe the best way to preserve mutual distances between data points looks very close to the best way to magnify their variance. On the other hand, don't forget that **sammon starts from the PCA configuration for its iterations**, and the default number of iterations (500) could be unsufficient to converge to some very different configuration with such a high dimensionality.
+This time Sammon Mapping has found a projection very similar to the one PCA found. Maybe, by chance, the best way to preserve mutual distances between data points looks very close to the best way to magnify their variance. On the other hand, don't forget that **sammon starts from the PCA configuration for its iterations**, and the default number of iterations (500) could be unsufficient to converge to some very different configuration with such a high dimensionality.
 
 Let's try with choosing 3 features to keep, as if our dataset was 3-dimensional.
 
