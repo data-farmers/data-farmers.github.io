@@ -75,11 +75,11 @@ X = df.as_matrix(columns = df.columns[:7])
 
 Sammon Mapping in Python is simple as that, once you have your dataset the only thing to do is to convert it into a matrix, to feed sammon.py method with. The result is a n-dimensional array (where n=2 by default) you can plot.
 
-![sammonplot0](../img/sammon/sammonplot0.png)
+![sammonplot0](../img/sammon/sammonplot0.png){:height="150%" width="150%"}
 
 Why we can't use the more popular Principal Component Analysis? Apparently there's little difference:
 
-![sammonplot1](../img/sammon/sammonplot1.png)
+![sammonplot1](../img/sammon/sammonplot1.png){:height="150%" width="150%"}
 
 This time Sammon Mapping has found a projection very similar to the one PCA found. Maybe the best way to preserve mutual distances between data points looks very close to the best way to magnify their variance. On the other hand, don't forget that **sammon starts from the PCA configuration for its iterations**, and the default number of iterations (500) could be unsufficient to converge to some very different configuration with such a high dimensionality.
 
@@ -100,7 +100,7 @@ X = df.as_matrix(columns = ['Area', 'Perimeter', 'Compactness'])
 
 As a reference, this plot shows the original spatial configuration of our datapoints, the result of Sammon Mapping and the Principal Component Analysis.
 
-![sammonplot2](../img/sammon/sammonplot2.png)
+![sammonplot2](../img/sammon/sammonplot2.png){:height="150%" width="150%"}
 
 Here it is more clear: Sammon Mapping's algorithm has found a way to represent the mutual distances between data points, while it doesn't account for a better displacement on the screen. PCA, instead, found the two components that best capture the variance across the dataset, and draw it accordingly.
 
