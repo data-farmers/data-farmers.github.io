@@ -2,7 +2,7 @@
 layout: post
 title: Sammon mapping
 subtitle: A non-linear mapping for data visualization
-gh-repo: data-farmers/code
+gh-repo: data-farmers/code/sammon
 tags: [multidimensional-scaling, non-linear]
 author: Alfonso
 comments: true
@@ -54,20 +54,57 @@ By default, iterative algorithms for the Sammon error minimization problem don't
 ## The code
 
 Unfortunately, it doesn't look Python has a good library that includes the Sammon Mapping among its functions.
-The following code is _stolen_ from [Tom Pollard's repository](https://github.com/tompollard/sammon). Thanks.
+The following code is taken from [Tom Pollard's repository](https://github.com/tompollard/sammon). Thanks.
 
 
 
-And here is the same code with syntax highlighting:
+Here we go: we have a pandas dataframe listing some properties on 199 labelled seeds. Our dataset includes 7 features for each observation, making it impossible to draw...unless we reduce it to 3 or fewer dimensions with Sammon Mapping.
 
-```javascript
-var foo = function(x) {
-  return(x + 5);
-}
-foo(3)
+```python
+import pandas as pd
+from sammon import sammon
+
+df = pd.read_csv('../dataset/seeds.csv')
+
+# sammon(...) wants a Matrix
+X = df.as_matrix(columns = df.columns[:7])
+
+# By default, sammon returns a 2-dim array and the error E
+[y, E] = sammon(X)
 ```
 
-As you can see...
+Sammon Mapping in Python is simple as that, once you have your dataset the only thing to do is to convert it into a matrix, to feed sammon.py method with. The result is a n-dimensional array (where n=2 by default) you can plot.
+
+![sammonplot0](../img/sammon/sammonplot0.png)
+
+Why we can't use the more popular Principal Component Analysis? Apparently there's little difference:
+
+![sammonplot1](../img/sammon/sammonplot1.png)
+
+This time Sammon Mapping has found a projection very similar to the one PCA found. Maybe the best way to preserve mutual distances between data points looks very close to the best way to magnify their variance. On the other hand, don't forget that **sammon starts from the PCA configuration for its iterations**, and the default number of iterations (500) could be unsufficient to converge to some very different configuration with such a high dimensionality.
+
+Let's try with choosing 3 features to keep, as if our dataset was 3-dimensional.
+
+```python
+import pandas as pd
+from sammon import sammon
+
+df = pd.read_csv('../dataset/seeds.csv')
+
+# sammon(...) wants a Matrix
+X = df.as_matrix(columns = ['Area', 'Perimeter', 'Compactness'])
+
+# By default, sammon returns a 2-dim array and the error E
+[y, E] = sammon(X)
+```
+
+As a reference, this plot shows the original spatial configuration of our datapoints, the result of Sammon Mapping and the Principal Component Analysis.
+
+![sammonplot2](../img/sammon/sammonplot2.png)
+
+Here it is more clear: Sammon Mapping's algorithm has found a way to represent the mutual distances between data points, while it doesn't account for a better displacement on the screen. PCA, instead, found the two components that best capture the variance across the dataset, and draw it accordingly.
+
+The full code of this demonstration is available at [https://github.com/data-farmers/code/sammon](https://github.com/data-farmers/code/sammon).
 
 {: .box-warning}
 **Warning:** Following Sammon's definition, if the distance between two points _i_ and _j_ is 0, the algorithm will try a division by 0.
