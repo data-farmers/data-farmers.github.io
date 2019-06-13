@@ -104,7 +104,7 @@ As a reference, this plot shows the original spatial configuration of our datapo
 
 Here it is more clear: Sammon Mapping's algorithm has found a way to represent the mutual distances between data points, while it doesn't account for a better displacement on the screen. PCA, instead, found the two components that best capture the variance across the dataset, and draw it accordingly.
 
-The full code of this demonstration is available at [https://github.com/data-farmers/code/sammon](https://github.com/data-farmers/code/sammon).
+The full code of this demonstration is available at [HERE](https://github.com/data-farmers/code/sammon_mapping).
 
 {: .box-warning}
 **Warning:** Following Sammon's definition, if the distance between two points _i_ and _j_ is 0, the algorithm will try a division by 0.
