@@ -42,7 +42,7 @@ $$B = W(P^{T}W)^{-1}Q^{T}$$
 
 Following Brereton and Lloyd's [paper](https://onlinelibrary.wiley.com/doi/full/10.1002/cem.2609), we only need to estimate W, P, Q and T via the following algorithm:
 
-![algorithm](../img/pls-da/algorithm.png)
+![algorithm](../img/pls-da/algorith.png)
 
 
 ## The code
