@@ -65,7 +65,7 @@ PLS-DA is suitable for a categorical response vector. However, it still needs to
 | A | 1 |
 | B | 0 |
 
-If we have more than 2 classes, say 3, we need to make Y a dummy N x 3 matrix as follows:
+If we have more than 2 classes, say G, we need to make Y a dummy N x G matrix, with each row made by 0s but for a 1 pointing to the class an observation belongs to. Here follows the case with G = 3:
 
 | Label | Y |
 | :------ |:--- |
@@ -74,7 +74,7 @@ If we have more than 2 classes, say 3, we need to make Y a dummy N x 3 matrix as
 | C | [0, 0, 1] |
 
 
-Let's code! First we need to transform our dataset as said before. We are gonna use one again our seed dataset, listing the properties of 3 classes of seeds. As the number of observation is way larger than the number of features, this may not be the perfect example, but hey, this is what our garden gives. In this example (you can find all the code [here](https://www.github.com/data-farmers/code/pls-da/)) we have a dataframe with a column, "Type", which indicates which class each observation belongs to, and we need to make from it a Y matrix as shown before. The first 7 columns, instead, represent our data, X.
+Let's code! First we need to transform our dataset as said before. We are gonna use once again our seed dataset, listing the properties of 3 classes of seeds. As the number of observation is way larger than the number of features, this may not be the perfect example, but hey, this is what our garden gives. In this example (you can find all the code [here](https://www.github.com/data-farmers/code/pls-da/)) we have a dataframe with a column, "Type", our original Y, and we need to unfold it into a N x 3 matrix as shown before. The first 7 columns, instead, represent our data, X.
 
 Python's library `sklearn` is all we need for performing the PLS-DA algorithm. The syntax is very simple:
 
@@ -86,7 +86,7 @@ from sklearn.cross_decomposition import PLSRegression
 plsr = PLSRegression(n_components=2, scale=False)
 
 # PLS-DA algorithm
-plsr.fit(X, y)
+plsr.fit(X, Y)
 
 # Just print the resulting scores
 plsr.x_scores_
