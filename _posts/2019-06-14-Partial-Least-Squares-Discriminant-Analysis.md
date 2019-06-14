@@ -33,7 +33,11 @@ Remember the Multiple Linear Regression approach:
 
 $$Y = BX + F$$
 
-where X is the N x J matrix of predictors, B is the J x 1 vector containing the regression coefficients, Y the N x 1 response vector, and F a N x 1 error vector. Our goal is to find a B vector that minimize the error F, and the least squares solution is given by $B = (X^{T}X)^{-1}X^{T}Y$. When the matrix X has more feature than observations, $X^TX$ [can't be inverted](https://stats.stackexchange.com/questions/247720/why-is-within-class-scatter-matrix-in-lda-singular). A possible solution is to decompose X into L orthogonal scores T (N x L) and loading matrix P (J x L), and the response vector Y into L orthogonal scores T (N x L) and loading matrix Q (1 x L). Let's call E the N x J error matrix associated to X, and F the N x 1 error matrix associated to Y. In other words:
+where X is the N x J matrix of predictors, B is the J x 1 vector containing the regression coefficients, Y the N x 1 response vector, and F a N x 1 error vector. Our goal is to find a B vector that minimize the error F, and the least squares solution is given by 
+
+$$B = (X^{T}X)^{-1}X^{T}Y$$
+
+When the matrix X has more feature than observations, $X^TX$ [can't be inverted](https://stats.stackexchange.com/questions/247720/why-is-within-class-scatter-matrix-in-lda-singular). A possible solution is to decompose X into L orthogonal scores T (N x L) and loading matrix P (J x L), and the response vector Y into L orthogonal scores T (N x L) and loading matrix Q (1 x L). Let's call E the N x J error matrix associated to X, and F the N x 1 error matrix associated to Y. In other words:
 
 $$X = TP^T + E$$
 
