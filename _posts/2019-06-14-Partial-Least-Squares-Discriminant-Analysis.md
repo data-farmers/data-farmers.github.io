@@ -9,7 +9,7 @@ comments: true
 ---
 
 
-It may happen that you have a dataset with columns X_1, ..., X_n, Y, and you want to check if there is any correlation between X_1, ..., X_n variables (or part of them) and the Y variable. You know that correlation doesn't mean causation, but sometimes it would be useful to assess wether one could say anything on Y by looking at Xs variables, i.e. finding some vector B that $Y \simeq XB$. A well known algorithm for such a task is the [Partial Least Squares Regression](https://data-farmers.github.io/2019-06-12-partial-least-squares-regression) (PLS-R), but it need Y variable to be continous, such as Xs; in case you have categorical variables, you can use a variant: Partial Least Squares Discriminant Analysis (PLS-DA). In a hypothetical taxonomy of ML methods, one could be doubtful about where to place PLS-DA, as it solves two problems with a single algorithm: (1) it encompassess a **feature dimensionality reduction** step, and (2) it provides a B vector that can be reused for **predicting** $Y\star$ from future observations $X\star$.
+It may happen that you have a dataset with columns $X_1, ..., X_n, Y$, and you want to check if there is any correlation between $X_1, ..., X_n$ variables (or part of them) and the $Y$ variable. You know that correlation doesn't mean causation, but sometimes it would be useful to assess wether one could say anything on Y by looking at Xs variables, i.e. finding some vector $B$ that $Y \simeq XB$. A well known algorithm for such a task is the [Partial Least Squares Regression](https://data-farmers.github.io/2019-06-12-partial-least-squares-regression) (PLS-R), but it need Y variable to be continous, such as Xs; in case you have categorical variables, you can use a variant: Partial Least Squares Discriminant Analysis (PLS-DA). In a hypothetical taxonomy of ML methods, one could be doubtful about where to place PLS-DA, as it solves two problems with a single algorithm: (1) it encompassess a **feature dimensionality reduction** step, and (2) it provides a $B$ vector that can be reused for **predicting** $Y\star$ from future observations $X\star$.
 
 ## Purpose
 
@@ -19,29 +19,67 @@ Let's start from the dimensionality reduction task. You know your Xs variables (
 **PLS-DA vs LDA**: Some kind of data, spectral data for instance, tend to have more features than observations. In such a high-dimensional space, features are often correlated each other, a problem known as multicollinearity. Unlike PLS-DA, LDA cannot handle multicollinearity.
 
 
-**PLS-DA vs PCA**: PCA is completely unsupervised, i.e. you don't know in advance if there are classes in your dataset, hence you simply project it into a space which maximizes the variance between your data, hopeful it will lead to a good qualitative clusterization. In PLS-DA, however, you know how your dataset is divided in classes from the response vector Y. The goal here is then to project the predictors into a space, while maximizing the between-group distances. PCA and PLS-DA projections will eventually be different.
+**PLS-DA vs PCA**: PCA is completely unsupervised, i.e. you don't know in advance if there are classes in your dataset, hence you simply project it into a space which maximizes the variance between your data, hopeful it will lead to a good qualitative clusterization. In PLS-DA, however, you know how your dataset is divided in classes from the response vector Y. The goal here is then to project the predictors into a space, while maximizing the between-group distances / within group distances ratio. PCA and PLS-DA projections will eventually be different.
 
 Due to these differences, PLS-DA is the best choice when dealing with dataset with less observation than features, and you know which class each observation belongs to.
-Hence we learned a transformation from the original n-dimensional spaced into the new P-dimensional space, where P is the number of Latent Variables, in a way that separates the most our data into the different classes. This mapping can turn useful in the future: if we gather new unlabelled data, we can map them through this projection, and accordingly classify them.
+Hence we learned a transformation from the original n-dimensional spaced into the new L-dimensional space, where L is the number of Latent Variables, in a way that separates the most our data into the different classes. This mapping can turn useful in the future: if we gather new unlabelled data, we can map them through this projection, and accordingly classify them.
 
 
 ## The algorithm
 
-1) equations Y = BX + E
-2) Algorithm
+Remember the Multiple Linear Regression approach:
+$$Y = BX + F$$
+
+where X is the N x J matrix of predictors, B is the J x 1 vector containing the regression coefficients, Y the N x 1 response vector, and F a N x 1 error vector. Our goal is to find a B vector that minimize the error F, and the least squares solution is given by $B = (X^{T}X)^{-1}X^{T}Y$. When the matrix X has more feature than observations, $X^TX$ [can't be inverted](https://stats.stackexchange.com/questions/247720/why-is-within-class-scatter-matrix-in-lda-singular). A possible solution is to decompose X into L orthogonal scores T (N x L) and loading matrix P (J x L), and the response vector Y into L orthogonal scores T (N x L) and loading matrix Q (1 x L). Let's call E the N x J error matrix associated to X, and F the N x 1 error matrix associated to Y. In other words:
+$$X = TP^T + E$$
+$$Y = TQ^T + F$$
+
+We define a weights matrix W (J x L) so we can re-write T as $T = XW(P^{T}W)^{-1}$, hence:
+$$Y = XW(P^{T}W)^{-1}Q^{T} + F$$
+
+from which, finally:
+$$B = W(P^{T}W)^{-1}Q^{T}$$
+
+Following Brereton and Lloyd's [paper](https://onlinelibrary.wiley.com/doi/full/10.1002/cem.2609), we only need to estimate W, P, Q and T via the following algorithm:
+
+![algorithm](../img/pls-da/algorithm.png)
 
 
 ## The code
 
-1) transformation Y -> [0|1]
+PLS-DA is suitable for a categorical response vector. However, it still needs to be converted in numerical. If we have 2 categories, the mapping is very simple:
+
+| Label | Y |
+| :------ |:--- |
+| A | 1 |
+| B | 0 |
+
+If we have more than 2 categories, say G, we need to transform it in a dummy N x G matrix as follows:
+
+| Label | Y |
+| :------ |:--- |
+| A | [1, 0, 0] |
+| B | [0, 1, 0] |
+| C | [0, 0, 1] |
+
+In this case, we will change our algorithm to PLS2-DA [1](https://pubs.rsc.org/en/content/articlelanding/2018/an/c8an00599k#cit14)
+
+Let's code! Python's library **sklearn** is all we need.
+
 2) do we need any pre-processing?
 3) code!
 
 ```python
-return whatever
+from sklearn.cross_decomposition import PLSRegression
+
+# 2 Latent Variables, no scaling
+plsr = PLSRegression(n_components=2, scale=False)
+
+# fit(X, Y)
+plsr.fit(df.values.T, y) # <2>
 ```
 
-201
+Comments...
 
 {: .box-note}
 **Note:** Fuck.
