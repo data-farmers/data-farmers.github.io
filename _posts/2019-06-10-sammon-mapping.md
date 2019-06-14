@@ -110,6 +110,6 @@ The full code of this demonstration is available at [HERE](https://github.com/da
 **Warning:** Following Sammon's definition, if the distance between two points _i_ and _j_ is 0, the algorithm will try a division by 0.
 Check for your data points to be **non repeated**, or your code will crash!
 
-**See also:** [PCA vs Sammon Sampling](http://hisee.sourceforge.net/Examples/Boquet.html)
+**See also:** [PCA vs Sammon Mapping](http://hisee.sourceforge.net/Examples/Boquet.html)
 
 
