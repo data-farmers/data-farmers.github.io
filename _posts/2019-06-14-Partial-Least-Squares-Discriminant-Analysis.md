@@ -21,10 +21,18 @@ Let's start from the dimensionality reduction task. You know your Xs variables (
 
 **PLS-DA vs PCA**: PCA is completely unsupervised, i.e. you don't know in advance if there are classes in your dataset, hence you simply project it into a space which maximizes the variance between your data, hopeful it will lead to a good qualitative clusterization. In PLS-DA, however, you know how your dataset is divided in classes from the response vector Y. The goal here is then to project the predictors into a space, while maximizing the between-group distances / within group distances ratio. PCA and PLS-DA projections will eventually be different.
 
+Let's look at this picture:
+
+![pls-da-yt](../img/pls-da/pls-da-yt1.png)
+
+It shows a 2-dimensional matrix X on the left, a 2-dimensional matrix Y on the left, and the projection of X and Y points over two main components, found by PCA. As you can see, the new projection displaces the datapoints on the new space, while magnifying the distance between each of them. However, X score (the projection of X points on the new component) is not related to Y scores anyway. Let's look at this picture:
+
+![pls-da-yt](../img/pls-da/pls-da-yt2.png)
+
+Here we rotated the X component until we found the maximum correlation in the lower plot, i.e. the maximum correlation between the X projections and the Y projections. This correlation may turn useful in the future, in case we have only $X\star$ points with no $Y\star$, because we have a mapping that we can apply to $X\star$ points, knowing that $X\star$ projections are correlated to $Y\star$ projections.
+
 Due to these differences, PLS-DA is the best choice when dealing with dataset with less observation than features, and you know which class each observation belongs to.
 Hence we learned a transformation from the original n-dimensional spaced into the new L-dimensional space, where L is the number of Latent Variables, in a way that separates the most our data into the different classes. This mapping can turn useful in the future: if we gather new unlabelled data, we can map them through this projection, and accordingly classify them.
-
-For this tutorial sake, we are going to focus on the dimensionality reduction task. Maybe the classification task will be tackled in a next tutorial.
 
 
 ## The algorithm
@@ -94,9 +102,22 @@ plsr.x_scores_
 
 `plsr.x_scores_` contains a N x 2 matrix, with the projection of each datapoint on each Latent Variable. We can plot this, if we want to plot our dataset into the new space:
 
-![plsda_plot1](../img/pls-da/plot1.png))
+![plsda_plot1](../img/pls-da/plot1.png)
 
-Comments...
+Well, a good dimensionality reduction tool. But what about the classification of next X examples? We extracted 21 rows from the dataframe, related to 21 seeds observation across the three classes (6 class 'Kama', 8 'Rosa' and 7 'Canadian'), and we called it Xtest (the remaining 178 samples will be our Xtrain), and similarly for Y. We trained our `plsr` model with Xtrain and Ytrain only, then we tried to predict the scores of our Xtest points onto the new space. As we trained our model on Xtrain with a 3-dimensional Ytrain, it will predict a 3-dimensional mapping for our nex Xtest.
+
+```python
+plsr = PLSRegression(n_components=2, scale=False) # <1>
+plsr.fit(Xtrain, ytrain)
+
+ypred = plsr.predict(Xtest) # will return a (21 x 3) matrix
+```
+
+Here it is the plot:
+
+![plsda plt3](../img/pls-da/plt2.png)
+
+You can see how each point is placed with a high score in one of the three dimensions, and low scores for the remaining two. Unsurprisingly, this correlates well with our Ytest response matrix, as each row was all 0s but for a 1. By shaping and coloring the points according to the classes they actually belong, we can see how perfect is this mapping.
 
 
 
