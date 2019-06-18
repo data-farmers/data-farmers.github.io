@@ -115,7 +115,7 @@ ypred = plsr.predict(Xtest) # will return a (21 x 3) matrix
 
 Here it is the plot:
 
-![plsda plt3](../img/pls-da/plt2.png)
+![plsdaplt2](../img/pls-da/plt2.png)
 
 You can see how each point is placed with a high score in one of the three dimensions, and low scores for the remaining two. Unsurprisingly, this correlates well with our Ytest response matrix, as each row was all 0s but for a 1. By shaping and coloring the points according to the classes they actually belong, we can see how perfect is this mapping.
 
