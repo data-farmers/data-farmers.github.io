@@ -29,7 +29,7 @@ It shows a 2-dimensional matrix X on the left, a 2-dimensional matrix Y on the l
 
 ![pls-da-yt](../img/pls-da/pls-da-yt2.png)
 
-Here we rotated the X component until we found the maximum correlation in the lower plot, i.e. the maximum correlation between the X projections and the Y projections. This correlation may turn useful in the future, in case we have only $X\star$ points with no $Y\star$, because we have a mapping that we can apply to $X\star$ points, knowing that $X\star$ projections are correlated to $Y\star$ projections.
+Here we rotated the X component until we found the maximum correlation in the lower plot, i.e. the maximum correlation between the X projections and the Y projections. This correlation may turn useful in the future, in case we have only $X\star$ points with no $Y\star$, because we have a mapping that we can apply to $X\star$ points, knowing that $X\star$ projections are correlated to $Y\star$ projections. Both previous pictures were taken [HERE](https://www.youtube.com/watch?v=Qt3Vv5KsnpA).
 
 Due to these differences, PLS-DA is the best choice when dealing with dataset with less observation than features, and you know which class each observation belongs to.
 Hence we learned a transformation from the original n-dimensional spaced into the new L-dimensional space, where L is the number of Latent Variables, in a way that separates the most our data into the different classes. This mapping can turn useful in the future: if we gather new unlabelled data, we can map them through this projection, and accordingly classify them.
