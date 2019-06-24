@@ -40,6 +40,6 @@ NMDS is based on an iterative procedure: after having decided the number __m__ o
 
 There are different things that we should consider when picking up one of the above methods. The choice really depends on the kind of data one is dealing with - usually, PCA works for most of the cases. If a linear relationship between variables is assumed, but one does not want to use Euclidean distance, metric MDS can still be a possibility. If none of these assumptions holds, NMDS can be a good solution: it is suitable for user-defined metrics, that can be domain-specific, and can easily deal with any kind of data, like counts, ratios, intervals etc. Nonetheless, there are drawbacks for NMDS:
 
-*NMDS is an iterative process and, as such, it can fall in local minima;
-*For huge datasets, it can be computationally heavy;
-*Always remember that we are not dealing with an eigenvector method like MDS. This means that axes are non-metric, and have no actual meaning.
+-	NMDS is an iterative process and, as such, it can fall in local minima;
+-	For huge datasets, it can be computationally heavy;
+-	Always remember that we are not dealing with an eigenvector method like MDS. This means that axes are non-metric, and have no actual meaning.
