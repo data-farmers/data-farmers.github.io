@@ -25,7 +25,7 @@ of several (K) groups based on a set of measurements obtained from each object $
 Each object is assumed to be a member of one (and only one) group $1 ≤ k ≤ K$ and, obviously, an error is incurred if the object is attached to the wrong group. The measurements of all objects of one class k are
 characterized by a probability density $f_k(X)$ and we want to find a rule to decide for every object to wich group k it belongs to.
 
-**EXAMPLE**
+**Example**
 
 Let's make an exmple to better understand what we're taliking about.
 We've a group of people, male and famale. We just know weight and height of each person in the group and we want to classify the gender for each person from the weight and height (discriminant analysis).
@@ -39,7 +39,18 @@ Most often applied classifcation rules are based on the multivariate normal dist
 
 ![alt text](../img/RDA/multivariate_normal_dist.png "multivariate normal distribution")
 
-where $\mu$
+where $\mu$ and $\sum_k$ are the class k $(1 \le k \ge K)$ population mean vector ($\mu$) and covariance matrix ($\sum_k$).
+
+**Prior and unconditional distribution**
+
+Prior probability: we can have some prior knowledge about the probability of observing a member of class $k$: $\pi_k with \pi_1 + ... + \pi_k = 1$. If the prior probabilities are eqia; for each k, this leads to Maximum-Likelihood.
+
+To estimate the class conditional densities $f_k(X)$ and the prior
+probability $\pi_k$, a training sample with already correctly classified classes is used:
+
+$f(X) = \sum_{k=1}^{K}\pi(k)f(X|k)$
+
+
 
 
 
