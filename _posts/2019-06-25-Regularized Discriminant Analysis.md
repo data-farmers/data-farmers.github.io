@@ -39,7 +39,7 @@ Most often applied classifcation rules are based on the multivariate normal dist
 
 ![alt text](../img/RDA/multivariate_normal_dist.png "multivariate normal distribution")
 
-where $\mu$ and $\sum_k$ are the class k $(1 \le k \ge K)$ population mean vector ($\mu$) and covariance matrix ($\sum_k$).
+where $\mu$ and $\sum_k$ are the class k $(1 \le k \le K)$ population mean vector ($\mu$) and covariance matrix ($\sum_k$).
 
 **Prior and unconditional distribution**
 
@@ -48,9 +48,13 @@ Prior probability: we can have some prior knowledge about the probability of obs
 To estimate the class conditional densities $f_k(X)$ and the prior
 probability $\pi_k$, a training sample with already correctly classified classes is used:
 
-$f(X) = \sum_{k=1}^{K}\pi(k)f(X|k)$
+Unconditional distribution of $X$ =$ f(X) = \sum_{k=1}^{K}\pi(k)f(X|k)$
 
+**Posterior distribution**
 
+The probability for one object with given vector $X^T = (X_1, ..., X_p)$ to belong to a class $k$ is calculated by the Bayes forumla:
+
+$p(k|X)$
 
 
 
