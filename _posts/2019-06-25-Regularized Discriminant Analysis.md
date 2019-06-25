@@ -21,7 +21,7 @@ Today I'll present you the following approaches to discriminant analysis:
 ## Discriminant Analysis
 
 The purpose of discriminant analysis is to assign objects to one
-of several (K) groups based on a set of measurements obtained from each object $X = (X_1, X_2, ..., X_p).
+of several (K) groups based on a set of measurements obtained from each object $X = (X_1, X_2, ..., X_p)$.
 Each object is assumed to be a member of one (and only one) group $1 ≤ k ≤ K$ and, obviously, an error is incurred if the object is attached to the wrong group. The measurements of all objects of one class k are
 characterized by a probability density $f_k(X)$ and we want to find a rule to decide for every object to wich group k it belongs to.
 
@@ -37,7 +37,7 @@ We have a classification rule (discriminant function) to choose the group for ea
 We have a conditional distribution for each class k, infact the distribution of the measurements X are seldom identical in each class.
 Most often applied classifcation rules are based on the multivariate normal distribution:
 
-![alt text](../img/multivariate_normal_dist.png "multivariate normal distribution")
+![alt text](../img/RDA/multivariate_normal_dist.png "multivariate normal distribution")
 
 where $\mu$
 
