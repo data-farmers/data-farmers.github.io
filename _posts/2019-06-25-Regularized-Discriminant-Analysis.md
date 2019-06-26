@@ -36,7 +36,7 @@ We have a classification rule (discriminant function) to choose the group for ea
 
 Linear Discriminant Analysis assumes that the joint density of all features ($X$), conditional on the target's class ($k$) in a multivariate normal distribution. This means that the density function ($P$) of the features $X$, given the target $y$ is in class $k$, are assumed to be given by
 
-$P(X \| y=k)=\frac{1}{(2\pi)^{\frac{d}{2}} \| \sum_k \| ^\frac{1}{2}}exp(-\frac{1}{2}(X-\mu_k)^t\sum_k^1(X - \mu_k))$
+$P(X \|  y=k)=\frac{1}{(2\pi)^{\frac{d}{2}} \|  \sum_k \|  ^\frac{1}{2}}exp(-\frac{1}{2}(X-\mu_k)^t\sum_k^1(X - \mu_k))$
 
 where $\mu$ and $\sum_k$ are the class $k$ $(1 \le k \le K)$ population mean vector ($\mu$) and covariance matrix ($\sum_k$).
 
@@ -44,9 +44,9 @@ The decision boundary between two classes, say k and l, is the **hyperplane** on
 
 An important assumption in LDA is that the Gaussians for different classes share **the same covariance matrix**.
 
-To calculate the density of the features, $P(X\ | y=k)$, we just have to estimate the Gaussian parameters: the means $\mu_k$ as the sample means and the covariance matrix $\sum$ as the empirical sample covariance matrix. Having calculated this, the probability of the target belonging to class k can be obtained from the Bayes rule:
+To calculate the density of the features, $P(X\  \|  y=k)$, we just have to estimate the Gaussian parameters: the means $\mu_k$ as the sample means and the covariance matrix $\sum$ as the empirical sample covariance matrix. Having calculated this, the probability of the target belonging to class k can be obtained from the Bayes rule:
 
-$P(y=k | X) = \frac{P(X | y=k)P(y=k)}{P(X)}$
+$P(y=k  \|  X) = \frac{P(X  \|  y=k)P(y=k)}{P(X)}$
 
 where $P(y=k)$ is the prior probability of belonging to class k and can be estimated by the the proportion of k-class observations in the sample.
 
