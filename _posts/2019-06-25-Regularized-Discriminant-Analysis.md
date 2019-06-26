@@ -58,14 +58,14 @@ Principal Component Analysis (PCA) identifies the combination of attributes (pri
 
 Linear Discriminant Analysis (LDA) tries to identify attributes that account for the most variance between classes. In particular, LDA, in contrast to PCA, is a supervised method, using known class labels.
 
-![alt text](../img/RDA/pca_lda.png "PCA and LDA")
+![pca](../img/RDA/pca_lda.png "PCA and LDA")
 
 ## Quadratic Discriminant Analysis
 
 We've said before that LDA has an importan assumption: Gaussians for different classes share **the same covariance matrix** but this might be incorrect for particular data.
 The left column in the picture below shows how LDA performs for data that indeed come from a multivariate Gaussians with a common covariance matrix (upper pane) versus when the data for different classess have different covariances (lower pane).
 
-![alt text](../img/RDA/lda_cov.0png "PCA and LDA")
+![cov](../img/RDA/lda_cov.0png "PCA and LDA")
 
 In this case we have to estimate not one but $k$ covariance and, if there are many features, this can lead to an increase of the number of parameters in the model.
 
@@ -76,36 +76,10 @@ Note that if a coefficient gets shrunk to exactly zero, the corresponding variab
 Shrinkage and selection aim at improving upon the simple linear regression. Linear regression estimates tend to have low bias and high variance. Reducing model complexity (the number of parameters that need to be estimated) results in reducing the variance at the cost of introducing more bias.
 Just like linear models for regression can be regularized to improve accuracy, so can linear classifiers. We can introduce a shrinking parameter $\alpha$ that shrinks the separate covariance matrices of QDA towards a common LDA matrix:
 
-![alt text](../img/RDA/shrinking.png "shrinking parameter alpha")
+![shrinking](../img/RDA/shrinking.png "shrinking parameter alpha")
 
 The shrinkage parameter can take values from 0 (LDA) to 1 (QDA) and any value in between is a compromise between the two approaches. The best value of $\alpha$ can be choosen based on cross-validation.
 
-## LDA code
-
-```python
-from sklearn.cross_decomposition import PLSRegression
-
-#Read the dataset
-df = pd.read_csv('seeds.csv')
-X = df.iloc[:,0:7]
-y = df['Type']
-
-#Create train set and test set
-train, test, train_lbl, test_lbl = train_test_split(X, y, test_size=1/7.0, random_state=0)
-
-#Scale the data: mean 0 and variance 1 
-scaler = StandardScaler()
-# Fit on training set only.
-scaler.fit(train)
-train = scaler.transform(train)
-test = scaler.transform(test)
-
-pca = PCA(n_components=nc)
-pca.fit(train)
-train = pca.transform(train)
-test = pca.transform(test)
-
-```
 
 
 
