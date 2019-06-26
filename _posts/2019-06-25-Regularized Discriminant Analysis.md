@@ -34,27 +34,53 @@ We have a classification rule (discriminant function) to choose the group for ea
 
 ##Linear Discriminant Analysis (LDA)
 
-Linear Discriminant Analysis assumes that the joint density of all features ($X$), conditional on the target's class ($k$) in a multivariate normal distribution. This means that the density function ($f$) of the features X, given the target is in class k, are assumed to be given by
+Linear Discriminant Analysis assumes that the joint density of all features ($X$), conditional on the target's class ($k$) in a multivariate normal distribution. This means that the density function ($P$) of the features $X$, given the target $y$ is in class $k$, are assumed to be given by
 
-![alt text](../img/RDA/multivariate_normal_dist.png "multivariate normal distribution")
+$P(X|y=k)=\frac{1}{(2\pi)^{\frac{d}{2}}|\sum_k|^\frac{1}{2}}exp(-\frac{1}{2}(X-\mu_k)^t\sum_k^1(X - \mu_k))$
 
-where $\mu$ and $\sum_k$ are the class k $(1 \le k \le K)$ population mean vector ($\mu$) and covariance matrix ($\sum_k$).
+where $\mu$ and $\sum_k$ are the class $k$ $(1 \le k \le K)$ population mean vector ($\mu$) and covariance matrix ($\sum_k$).
 
 The decision boundary between two classes, say k and l, is the **hyperplane** on which the probability of belonging to either class is the same. This implies that, on this hyperplane, the difference between the two densities (and hence also the log-odds ratio between them) should be zero.
 
 An important assumption in LDA is that the Gaussians for different classes share **the same covariance matrix**.
 
-To calculate the density of the features, $f(X|k)$, we just have to estimate the Gaussian parameters: the means $\mu_k$ as the sample means and the covariance matrix $\sum$ as the empirical sample covariance matrix. Having calculated this, the probability of the target belonging to class k can be obtained from the Bayes rule:
+To calculate the density of the features, $P(X|y=k)$, we just have to estimate the Gaussian parameters: the means $\mu_k$ as the sample means and the covariance matrix $\sum$ as the empirical sample covariance matrix. Having calculated this, the probability of the target belonging to class k can be obtained from the Bayes rule:
 
-![alt text](../img/RDA/bayes.png "Bayes formula")
+$P(y=k|X) = \frac{P(X|y=k)P(y=k)}{P(X)}$
 
-An object si assigned to class $k_i$ if it has the biggest posterior probability $p(k_i|X)$. This is equal to minimizing the expected loss.
-
-where P(y=k) is the prior probability of belonging to class k and can be estimated by the the proportion of k-class observations in the sample.
+where $P(y=k)$ is the prior probability of belonging to class k and can be estimated by the the proportion of k-class observations in the sample.
 
 Note that LDA has **no hyperparameters** to tune.
 
-## LDA code
+##LDA and PCA
+
+Principal Component Analysis (PCA) identifies the combination of attributes (principal components) that account for the most variance in the data. Here we plot the different samples on the 2 first principal components.
+
+Linear Discriminant Analysis (LDA) tries to identify attributes that account for the most variance between classes. In particular, LDA, in contrast to PCA, is a supervised method, using known class labels.
+
+![alt text](../img/RDA/pca_lda.png "PCA and LDA")
+
+##Quadratic Discriminant Analysis
+
+We've said before that LDA has an importan assumption: Gaussians for different classes share **the same covariance matrix** but this might be incorrect for particular data.
+The left column in the picture below shows how LDA performs for data that indeed come from a multivariate Gaussians with a common covariance matrix (upper pane) versus when the data for different classess have different covariances (lower pane).
+
+![alt text](../img/RDA/lda_cov.0png "PCA and LDA")
+
+In this case we have to estimate not one but $k$ covariance and, if there are many features, this can lead to an increase of the number of parameters in the model.
+
+##Regularized Discriminant Analysis
+
+In the linear regression context, subsetting means choosing a subset from available variables to include in the model, thus reducing its dimensionality. **Shrinkage**, on the other hand, means reducing the size of the coefficient estimates (shrinking them towards zero).
+Note that if a coefficient gets shrunk to exactly zero, the corresponding variable drops out of the model. Consequently, such a case can also be seen as a kind of subsetting.
+Shrinkage and selection aim at improving upon the simple linear regression. Linear regression estimates tend to have low bias and high variance. Reducing model complexity (the number of parameters that need to be estimated) results in reducing the variance at the cost of introducing more bias.
+Just like linear models for regression can be regularized to improve accuracy, so can linear classifiers. We can introduce a shrinking parameter $\alpha$ that shrinks the separate covariance matrices of QDA towards a common LDA matrix:
+
+![alt text](../img/RDA/shrinking.png "shrinking parameter alpha")
+
+The shrinkage parameter can take values from 0 (LDA) to 1 (QDA) and any value in between is a compromise between the two approaches. The best value of $\alpha$ can be choosen based on cross-validation.
+
+##LDA code
 
 ```python
 from sklearn.cross_decomposition import PLSRegression
@@ -81,6 +107,5 @@ test = pca.transform(test)
 
 ```
 
-##Quadratic Discriminant Analysis
 
-We've said that before that 
+
