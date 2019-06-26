@@ -65,7 +65,7 @@ Linear Discriminant Analysis (LDA) tries to identify attributes that account for
 We've said before that LDA has an importan assumption: Gaussians for different classes share **the same covariance matrix** but this might be incorrect for particular data.
 The left column in the picture below shows how LDA performs for data that indeed come from a multivariate Gaussians with a common covariance matrix (upper pane) versus when the data for different classess have different covariances (lower pane).
 
-![cov](../img/RDA/lda_cov.0png "PCA and LDA")
+![cov](../img/RDA/lda_cov.png "PCA and LDA")
 
 In this case we have to estimate not one but $k$ covariance and, if there are many features, this can lead to an increase of the number of parameters in the model.
 
