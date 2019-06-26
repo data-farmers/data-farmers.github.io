@@ -82,7 +82,7 @@ If we have more than 2 classes, say G, we need to make Y a dummy N x G matrix, w
 | C | [0, 0, 1] |
 
 
-Let's code! First we need to transform our dataset as said before. We are gonna use once again our seed dataset, listing the properties of 3 classes of seeds. As the number of observation is way larger than the number of features, this may not be the perfect example, but hey, this is what our garden gives. In this example (you can find all the code [here](https://www.github.com/data-farmers/code/pls-da/)) we have a dataframe with a column, "Type", our original Y, and we need to unfold it into a N x 3 matrix as shown before. The first 7 columns, instead, represent our data, X.
+Let's code! First we need to transform our dataset as said before. We are gonna use once again our seed dataset, listing the properties of 3 classes of seeds. As the number of observation is way larger than the number of features, this may not be the perfect example, but hey, this is what our garden gives. In this example (you can find all the code [here](https://github.com/data-farmers/code/tree/master/pls-da)) we have a dataframe with a column, "Type", our original Y, and we need to unfold it into a N x 3 matrix as shown before. The first 7 columns, instead, represent our data, X.
 
 Python's library `sklearn` is all we need for performing the PLS-DA algorithm. The syntax is very simple:
 
