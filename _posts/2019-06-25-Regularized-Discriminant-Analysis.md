@@ -36,7 +36,7 @@ We have a classification rule (discriminant function) to choose the group for ea
 
 Linear Discriminant Analysis assumes that the joint density of all features ($X$), conditional on the target's class ($k$) in a multivariate normal distribution. This means that the density function ($P$) of the features $X$, given the target $y$ is in class $k$, are assumed to be given by
 
-$P(X | y=k)=\frac{1}{(2\pi)^{\frac{d}{2}} | \sum_k | ^\frac{1}{2}}exp(-\frac{1}{2}(X-\mu_k)^t\sum_k^1(X - \mu_k))$
+$P(X \| y=k)=\frac{1}{(2\pi)^{\frac{d}{2}} \| \sum_k \| ^\frac{1}{2}}exp(-\frac{1}{2}(X-\mu_k)^t\sum_k^1(X - \mu_k))$
 
 where $\mu$ and $\sum_k$ are the class $k$ $(1 \le k \le K)$ population mean vector ($\mu$) and covariance matrix ($\sum_k$).
 
